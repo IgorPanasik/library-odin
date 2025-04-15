@@ -1,0 +1,277 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+	transition: outline 0.3s ease-in-out;
+	outline: 2px #ffffff00 solid;
+	color: #000;
+
+	&:focus,
+	&:active {
+		outline: 2px #39a0e4 solid;
+	}
+}
+
+:is(svg, img) {
+	display: block;
+	max-width: 100%;
+}
+
+:is(input, button, textarea, select) {
+	font: inherit;
+	transition: outline 0.3s ease-in-out;
+	outline: 2px #ffffff00 solid;
+	&:focus,
+	&:active {
+		outline: 3px #39a0e4 solid;
+	}
+}
+
+input {
+	border: none;
+	border-radius: 4px;
+	border: 1px solid #d3d3d3;
+	padding: 2px 10px;
+	font-size: 1rem;
+}
+
+/* Custom style checkbox */
+input[type='checkbox'] {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: transparent;
+	margin: 0;
+	color: #424242;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #2d3680;
+	border-radius: 0.15em;
+	transform: translateY(0);
+
+	display: grid;
+	place-content: center;
+}
+
+input[type='checkbox']::before {
+	content: '';
+	width: 12px;
+	height: 12px;
+	clip-path: inset(0 0 0 0);
+	transform: scale(0);
+	transform-origin: center center;
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 16px 16px #544594;
+	background-color: transparent;
+}
+
+input[type='checkbox']:checked::before {
+	transform: scale(1);
+}
+
+body {
+	font-family: system-ui, -apple-system, Roboto, BlinkMacSystemFont, 'Segoe UI',
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: clamp(1.1rem, 1.3rem, 1.5rem);
+	line-height: 1.5;
+
+	transition: 0.2s outline ease-in-out;
+
+	background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
+		radial-gradient(
+			91% 146%,
+			rgba(255, 255, 255, 0.5) 47%,
+			rgba(0, 0, 0, 0.5) 100%
+		);
+	background-blend-mode: screen;
+	will-change: transform;
+}
+
+svg {
+	width: 30px;
+}
+
+button {
+	border: none;
+	padding: 10px 20px;
+	border-radius: 10px;
+	background-color: #d7e7f3;
+	transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #5c7285;
+		color: #d3d6f3;
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	max-width: 1920px;
+	margin: 0 auto;
+
+	h1 {
+		margin-bottom: 20px;
+		background: linear-gradient(45deg, #39a0e4, #e74c3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+}
+
+header,
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px 20px;
+	background-color: #e4e4e1;
+	background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+	width: 100%;
+
+	span {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 0;
+			height: 2px;
+			left: 0;
+			bottom: -3px;
+			transition: 0.3s width ease-in-out;
+		}
+
+		&:hover::after {
+			width: 100%;
+			background-color: rgb(15, 15, 15);
+		}
+	}
+
+	& .logo {
+		background: linear-gradient(45deg, #39a0e4, #e74c3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	svg:last-of-type {
+		width: 20px;
+	}
+
+	.logo {
+		color: #0f0f0f;
+	}
+}
+
+main {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.modal {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	right: -100%;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background-color: #e7e7e704;
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+	transform: scale(0);
+	transition: all 0.3s ease-in;
+
+	&.open {
+		transform: scale(1);
+		right: 0;
+		left: 0;
+		top: 0;
+	}
+
+	.modal-content {
+		border: 1px solid #b0b4e2;
+		border-radius: 10px;
+		padding: 30px;
+		background: linear-gradient(
+				to bottom,
+				#d5dee7 0%,
+				#e8ebf2 50%,
+				#e2e7ed 100%
+			),
+			linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0.02) 50%,
+				rgba(255, 255, 255, 0.02) 61%,
+				rgba(0, 0, 0, 0.02) 73%
+			),
+			linear-gradient(
+				33deg,
+				rgba(255, 255, 255, 0.2) 0%,
+				rgba(0, 0, 0, 0.2) 100%
+			);
+		background-blend-mode: normal, color-burn;
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			justify-content: center;
+
+			h2 {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 1.5rem;
+			}
+
+			:is(label, button, p) {
+				font-size: 1.1rem;
+			}
+
+			span {
+				color: #b90909;
+			}
+
+			:is(.title-book, .author-book, .count-pages, .read) {
+				display: grid;
+				grid-template-columns: 1fr 2fr;
+				column-gap: 20px;
+				align-items: center;
+			}
+		}
+	}
+}
+
+footer {
+	justify-content: center;
+	line-height: 1;
+	p {
+		display: flex;
+		gap: 10px;
+		a {
+			color: #0b2e49;
+		}
+	}
+}
