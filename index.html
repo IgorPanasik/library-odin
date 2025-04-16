@@ -11,7 +11,7 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<a href="#" class="logo">BookStore</a>
+			<a href="/" class="logo">BookStore</a>
 			<nav>
 				<ul>
 					<li>
@@ -35,25 +35,23 @@
 
 		<main>
 			<h1>Your Dashboard For Books</h1>
-			<button type="button">Add Book</button>
-			<div class="books">
-				<div class="card"></div>
-			</div>
+			<button class="add-btn" type="button">Add Book</button>
+			<div class="books" aria-live="polite"></div>
 
 			<div role="dialog" aria-labelledby="modal-title" class="modal">
 				<div class="modal-content">
-					<form method="post">
+					<form method="post" id="form">
 						<h2 id="modal-title">Enter Book Details</h2>
 						<p id="required-desc" class="describe">
-							Fields marked with an asterisk (<span>*</span>) are required.
+							Fields marked with an asterisk (<span>*</span>) are required.😊
 						</p>
 						<div class="title-book">
 							<label for="title_book">Book Title<span>*</span></label>
-							<input type="text" name="title_book" id="title_book" required aria-describedby="required-desc">
+							<input min="1" type="text" name="title_book" id="title_book" required aria-describedby="required-desc">
 						</div>
 						<div class="author-book">
 							<label for="author_book">Book Author<span>*</span></label>
-							<input type="text" name="author_book" id="author_book" required aria-describedby="required-desc">
+							<input min="1" type="text" name="author_book" id="author_book" required aria-describedby="required-desc">
 						</div>
 						<div class="count-pages">
 							<label for="count_pages">Pages</label>
@@ -61,10 +59,10 @@
 						</div>
 						<div class="read">
 							<label for="read">Book have been read?</label>
-							<input type="checkbox" id="read" name="read">
+							<input type="checkbox" id="read" name="read" value="yes" checked>
 						</div>
-						<button type="submit">Add Book</button>
-						<button type="button">Cancel</button>
+						<button class="submit-btn" type="submit">Add Book</button>
+						<button class="cancel-btn" type="button">Cancel</button>
 					</form>
 				</div>
 			</div>
