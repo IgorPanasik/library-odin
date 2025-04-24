@@ -7,17 +7,40 @@ const modal = document.querySelector('.modal');
 
 let myLibrary = [];
 
-function Book(title, author, pages, isRead, id) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.isRead = isRead;
-	this.id = id;
-}
+document.addEventListener('DOMContentLoaded', () => {
+	myLibrary = [
+		new Book('1984', 'George Orwell', 328, true, crypto.randomUUID()),
+		new Book(
+			'Brave New World',
+			'Aldous Huxley',
+			288,
+			false,
+			crypto.randomUUID(),
+		),
+		new Book(
+			'The Great Gatsby',
+			'F. Scott Fitzgerald',
+			180,
+			true,
+			crypto.randomUUID(),
+		),
+	];
+	displayBooks();
+});
 
-Book.prototype.toggleReadStatus = function (id) {
-	if (this.id === id) this.isRead = !this.isRead;
-};
+class Book {
+	constructor(title, author, pages, isRead, id) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.isRead = isRead;
+		this.id = id;
+	}
+
+	toggleReadStatus(id) {
+		if (this.id === id) this.isRead = !this.isRead;
+	}
+}
 
 // Remove spaces and checking for isn't empty string '';
 const validForm = () => {
